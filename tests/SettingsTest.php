@@ -1,0 +1,102 @@
+<?php
+/**
+ * Settings: defaults, policy mapping onto block_on / review_on, sanitize.
+ */
+
+namespace EmailSherlock\EmailGuardWp\Tests;
+
+use EmailSherlock\EmailGuardWp\Settings;
+use PHPUnit\Framework\TestCase;
+
+final class SettingsTest extends TestCase {
+
+	protected function setUp(): void {
+		wp_stubs_reset();
+	}
+
+	public function testDefaultPolicyMatchesSpecDefaultsPlusRelayFlag(): void {
+		$settings = new Settings();
+
+		$this->assertSame( array( 'invalid', 'disposable' ), $settings->block_on() );
+		$this->assertSame( array( 'relay' ), $settings->review_on() );
+		$this->assertTrue( (bool) $settings->get( 'fail_open' ) );
+		$this->assertNull( $settings->api_key() );
+		$this->assertNull( $settings->site_key() );
+	}
+
+	public function testEveryFormEnabledByDefault(): void {
+		$settings = new Settings();
+		foreach ( array( 'comments', 'registration', 'woocommerce', 'contact_form_7', 'wpforms', 'gravity_forms' ) as $form_id ) {
+			$this->assertTrue( $settings->form_enabled( $form_id ), $form_id );
+		}
+		$this->assertFalse( $settings->form_enabled( 'nonexistent' ) );
+	}
+
+	public function testStoredSettingsMergeOverDefaults(): void {
+		update_option(
+			Settings::OPTION,
+			array(
+				'api_key'         => ' key-1 ',
+				'site_key'        => 'site-1',
+				'verdict_actions' => array( 'role' => 'block' ),
+				'forms'           => array( 'comments' => false ),
+			)
+		);
+		$settings = new Settings();
+
+		$this->assertSame( 'key-1', $settings->api_key() );
+		$this->assertSame( 'site-1', $settings->site_key() );
+		// Partial verdict_actions keeps defaults for the untouched tokens.
+		$this->assertSame( array( 'invalid', 'disposable', 'role' ), $settings->block_on() );
+		$this->assertFalse( $settings->form_enabled( 'comments' ) );
+		$this->assertTrue( $settings->form_enabled( 'registration' ) );
+	}
+
+	public function testGuardConfigShape(): void {
+		update_option( Settings::OPTION, array( 'api_key' => 'k', 'fail_open' => false ) );
+		$config = ( new Settings() )->guard_config();
+
+		$this->assertSame( 'k', $config['api_key'] );
+		$this->assertFalse( $config['fail_open'] );
+		$this->assertSame( array( 'invalid', 'disposable' ), $config['block_on'] );
+		$this->assertSame( array( 'relay' ), $config['review_on'] );
+		$this->assertSame( 800, $config['timeout_ms'] );
+		$this->assertSame( 'https://api.emailsherlock.com', $config['base_url'] );
+	}
+
+	public function testSanitizeCoercesAndClamps(): void {
+		$settings = new Settings();
+		$clean    = $settings->sanitize(
+			array(
+				'api_key'         => "  key\n",
+				'verdict_actions' => array(
+					'invalid' => 'allow',
+					'role'    => 'bogus-action',
+				),
+				'forms'           => array( 'comments' => '1' ),
+				'log_size'        => '9999',
+				'blocked_message' => '<script>x</script>Hi',
+			)
+		);
+
+		$this->assertSame( 'key', $clean['api_key'] );
+		$this->assertSame( 'allow', $clean['verdict_actions']['invalid'] );
+		// Unknown action falls back to the default for that token.
+		$this->assertSame( 'allow', $clean['verdict_actions']['role'] );
+		// Unchecked boxes are absent from POST and become false.
+		$this->assertFalse( $clean['fail_open'] );
+		$this->assertFalse( $clean['log_enabled'] );
+		$this->assertTrue( $clean['forms']['comments'] );
+		$this->assertFalse( $clean['forms']['registration'] );
+		$this->assertSame( 200, $clean['log_size'] );
+		$this->assertSame( 'xHi', $clean['blocked_message'] );
+	}
+
+	public function testBlockedMessageFallsBackToDefault(): void {
+		$settings = new Settings();
+		$this->assertNotSame( '', $settings->blocked_message() );
+
+		update_option( Settings::OPTION, array( 'blocked_message' => 'Custom message.' ) );
+		$this->assertSame( 'Custom message.', ( new Settings() )->blocked_message() );
+	}
+}

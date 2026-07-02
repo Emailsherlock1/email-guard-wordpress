@@ -1,0 +1,27 @@
+{
+  "name": "emailsherlock/email-guard-wordpress",
+  "description": "EmailSherlock Email Guard for WordPress: blocks disposable and undeliverable email addresses at form submit across comments, registration, WooCommerce, Contact Form 7, WPForms, and Gravity Forms.",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "keywords": ["wordpress", "plugin", "email", "email-validation", "email-verification", "disposable", "form-validation", "emailsherlock"],
+  "homepage": "https://github.com/Emailsherlock1/email-guard-wordpress",
+  "authors": [{ "name": "EmailSherlock" }],
+  "require": {
+    "php": ">=7.4",
+    "ext-json": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.6",
+    "yoast/phpunit-polyfills": "^2.0"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "EmailSherlock\\EmailGuardWp\\": "includes/",
+      "EmailSherlock\\EmailGuardWp\\Tests\\": "tests/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit"
+  },
+  "config": { "sort-packages": true }
+}

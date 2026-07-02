@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Emailsherlock1/email-guard-spec/vectors/schema.json",
+  "title": "Email-Guard conformance vector file",
+  "type": "object",
+  "required": ["format", "spec_version", "vectors"],
+  "additionalProperties": false,
+  "properties": {
+    "format": {
+      "const": "email-guard-vectors/1"
+    },
+    "spec_version": {
+      "type": "string",
+      "description": "Spec version these vectors belong to (SemVer)."
+    },
+    "category": {
+      "type": "string",
+      "description": "Human label for the file, e.g. 'syntax'."
+    },
+    "vectors": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/vector" }
+    }
+  },
+  "$defs": {
+    "verdict": {
+      "enum": ["valid", "invalid", "disposable", "role", "catch_all", "unknown"]
+    },
+    "decision_token": {
+      "description": "A token usable in block_on / review_on: a verdict (section 6.1) or a signal (section 6.5).",
+      "enum": ["valid", "invalid", "disposable", "role", "catch_all", "unknown", "relay"]
+    },
+    "action": {
+      "enum": ["allow", "deny", "review"]
+    },
+    "vector": {
+      "type": "object",
+      "required": ["id", "input", "expected"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z]+-[0-9]{3}$"
+        },
+        "description": { "type": "string" },
+        "input": {
+          "type": "object",
+          "required": ["email"],
+          "additionalProperties": false,
+          "properties": {
+            "email": { "type": "string" },
+            "config": { "$ref": "#/$defs/config" },
+            "api": {
+              "description": "Transport mock. null = no API key configured. 'unavailable' = a generic degraded check (cause not attributed). An object with a 'fail' key = a specific transport failure to simulate. Any other object = the parsed response body the mock returns with HTTP 200.",
+              "oneOf": [
+                { "type": "null" },
+                { "const": "unavailable" },
+                {
+                  "type": "object",
+                  "required": ["fail"],
+                  "additionalProperties": false,
+                  "properties": {
+                    "fail": { "enum": ["timeout", "connection", "http", "bad_response"] },
+                    "status": { "type": "integer", "minimum": 100, "maximum": 599 }
+                  }
+                },
+                {
+                  "type": "object",
+                  "not": { "required": ["fail"] }
+                }
+              ]
+            }
+          }
+        },
+        "expected": {
+          "type": "object",
+          "required": ["verdict", "action", "reasons", "degraded", "api_called"],
+          "additionalProperties": false,
+          "properties": {
+            "verdict": { "$ref": "#/$defs/verdict" },
+            "action": { "$ref": "#/$defs/action" },
+            "reasons": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "degraded": { "type": "boolean" },
+            "api_called": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "config": {
+      "type": "object",
+      "description": "Partial configuration; omitted keys take the spec defaults (api_key null, block_on [invalid, disposable], review_on [], fail_open true, timeout_ms 800).",
+      "additionalProperties": false,
+      "properties": {
+        "api_key": {
+          "type": ["string", "null"]
+        },
+        "block_on": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/decision_token" }
+        },
+        "review_on": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/decision_token" }
+        },
+        "fail_open": { "type": "boolean" },
+        "timeout_ms": { "type": "integer", "minimum": 1 }
+      }
+    }
+  }
+}
