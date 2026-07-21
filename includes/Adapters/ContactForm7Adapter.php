@@ -55,12 +55,14 @@ class ContactForm7Adapter implements AdapterInterface {
 	 * @return object
 	 */
 	public function validate( $result, $tag ) {
+		// phpcs:disable WordPress.Security.NonceVerification.Missing -- CF7 verifies its own nonce before invoking field validators; the value is sanitized below.
 		$name = isset( $tag->name ) ? (string) $tag->name : '';
 		if ( '' === $name || ! isset( $_POST[ $name ] ) || ! is_string( $_POST[ $name ] ) ) {
 			return $result;
 		}
 
-		$email = trim( (string) wp_unslash( $_POST[ $name ] ) );
+		$email = sanitize_text_field( wp_unslash( $_POST[ $name ] ) );
+		// phpcs:enable WordPress.Security.NonceVerification.Missing
 		if ( '' === $email ) {
 			// Nothing to check. Required-field validation is CF7's job.
 			return $result;

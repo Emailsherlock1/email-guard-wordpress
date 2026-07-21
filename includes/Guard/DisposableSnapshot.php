@@ -30,7 +30,7 @@ class DisposableSnapshot {
 	 * @param string|null $path Snapshot file (.json or .json.gz); defaults to the bundled one.
 	 */
 	public function __construct( $path = null ) {
-		$this->path = null !== $path ? $path : dirname( __DIR__, 2 ) . '/data/disposable-snapshot.json.gz';
+		$this->path = null !== $path ? $path : dirname( __DIR__, 2 ) . '/data/disposable-snapshot.json';
 	}
 
 	/**
@@ -62,6 +62,7 @@ class DisposableSnapshot {
 			return;
 		}
 
+		// phpcs:disable WordPress.Security.EscapeOutput.ExceptionNotEscaped -- internal SnapshotException, caught by the guard's fail-open path, never rendered to a visitor.
 		$raw = @file_get_contents( $this->path ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- failure is classified below.
 		if ( false === $raw ) {
 			throw new SnapshotException( "Cannot read disposable snapshot at {$this->path}" );
@@ -84,6 +85,7 @@ class DisposableSnapshot {
 			throw new SnapshotException( "Disposable snapshot at {$this->path} fails its count check" );
 		}
 
+		// phpcs:enable WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		$this->domains = array_fill_keys( $data['domains'], true );
 		$this->version = isset( $data['version'] ) && is_string( $data['version'] ) ? $data['version'] : '';
 	}

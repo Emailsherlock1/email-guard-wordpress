@@ -46,6 +46,7 @@ class Guard {
 	public function __construct( $config = array(), $transport = null, $snapshot = null ) {
 		$unknown = array_diff_key( $config, self::DEFAULTS );
 		if ( array() !== $unknown ) {
+			// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- developer-facing construction guard; static message plus config key names, never rendered to a visitor.
 			throw new \InvalidArgumentException( 'Unknown config keys: ' . implode( ', ', array_keys( $unknown ) ) );
 		}
 		if ( isset( $config['api_key'] ) && '' === $config['api_key'] ) {
@@ -188,6 +189,7 @@ class Guard {
 			(int) $this->config['timeout_ms']
 		);
 
+		// phpcs:disable WordPress.Security.EscapeOutput.ExceptionNotEscaped -- internal TransportException, caught by the guard's fail-open path, never rendered to a visitor.
 		if ( $response->status_code < 200 || $response->status_code >= 300 ) {
 			throw new TransportException(
 				'Verify API answered HTTP ' . $response->status_code,
@@ -203,6 +205,7 @@ class Guard {
 			);
 		}
 
+		// phpcs:enable WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		return $data;
 	}
 

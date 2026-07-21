@@ -59,6 +59,7 @@ class WpTransport implements TransportInterface {
 				? TransportException::KIND_TIMEOUT
 				: TransportException::KIND_CONNECTION;
 
+			// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- internal exception, caught by the guard's fail-open path, never rendered to a visitor.
 			throw new TransportException( 'Verify API request failed: ' . $message, $kind );
 		}
 
