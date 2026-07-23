@@ -7,12 +7,12 @@
 	document.addEventListener( 'DOMContentLoaded', function () {
 		var button = document.getElementById( 'email-guard-test-button' );
 		var result = document.getElementById( 'email-guard-test-result' );
-		if ( ! button || ! result || 'undefined' === typeof window.emailGuardAdmin ) {
+		if ( ! button || ! result || 'undefined' === typeof window.emailsherlockEmailGuard ) {
 			return;
 		}
 
 		button.addEventListener( 'click', function () {
-			var config = window.emailGuardAdmin;
+			var config = window.emailsherlockEmailGuard;
 			var apiKey = document.getElementById( 'email-guard-api-key' );
 			var siteKey = document.getElementById( 'email-guard-site-key' );
 

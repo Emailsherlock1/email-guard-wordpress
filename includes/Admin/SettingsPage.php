@@ -92,7 +92,7 @@ class SettingsPage {
 		);
 		wp_localize_script(
 			'emailsherlock-email-guard-admin',
-			'emailGuardAdmin',
+			'emailsherlockEmailGuard',
 			array(
 				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
 				'action'  => ConnectionTest::ACTION,

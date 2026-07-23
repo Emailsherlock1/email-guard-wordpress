@@ -55,7 +55,7 @@ With an API key configured, the plugin talks to the EmailSherlock API at `api.em
 1. **Verification.** On form submit, the typed email address is sent to `POST /v1/verify/single` to check whether the mailbox can receive mail. This is the one case where the full address leaves your server; it is required for verification to work. Without an API key, no address is ever sent anywhere.
 2. **Decision telemetry.** After the response is sent to the visitor, the plugin reports the decision (domain, verdict, action, reasons) to `POST /v1/guard/events` so you can see blocked domains in your dashboard. The full address is never included. The connection test on the settings screen sends one such event with no domain.
 
-This service is provided by EmailSherlock: [terms of service](https://emailsherlock.com/terms), [privacy policy](https://emailsherlock.com/privacy-policy).
+This service is provided by EmailSherlock: [terms of service](https://emailsherlock.com/terms), [privacy policy](https://emailsherlock.com/privacy).
 
 == Installation ==
 
