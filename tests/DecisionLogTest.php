@@ -3,13 +3,13 @@
  * Decision log: ring buffer, domain-only, honors the enable toggle.
  */
 
-namespace EmailSherlock\EmailGuardWp\Tests;
+namespace HostSherlock\EmailGuardWp\Tests;
 
-use EmailSherlock\EmailGuardWp\DecisionLog;
-use EmailSherlock\EmailGuardWp\Guard\Action;
-use EmailSherlock\EmailGuardWp\Guard\Result;
-use EmailSherlock\EmailGuardWp\Guard\Verdict;
-use EmailSherlock\EmailGuardWp\Settings;
+use HostSherlock\EmailGuardWp\DecisionLog;
+use HostSherlock\EmailGuardWp\Guard\Action;
+use HostSherlock\EmailGuardWp\Guard\Result;
+use HostSherlock\EmailGuardWp\Guard\Verdict;
+use HostSherlock\EmailGuardWp\Settings;
 use PHPUnit\Framework\TestCase;
 
 final class DecisionLogTest extends TestCase {

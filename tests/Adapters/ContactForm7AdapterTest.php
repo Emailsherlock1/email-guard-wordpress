@@ -2,13 +2,13 @@
 /**
  * ContactForm7Adapter wiring tests.
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Tests\Adapters;
+namespace HostSherlock\EmailGuardWp\Tests\Adapters;
 
-use EmailSherlock\EmailGuardWp\Adapters\ContactForm7Adapter;
-use EmailSherlock\EmailGuardWp\Tests\Support\FakeGuardService;
+use HostSherlock\EmailGuardWp\Adapters\ContactForm7Adapter;
+use HostSherlock\EmailGuardWp\Tests\Support\FakeGuardService;
 use PHPUnit\Framework\TestCase;
 
 /**

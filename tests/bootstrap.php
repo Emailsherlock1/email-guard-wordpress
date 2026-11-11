@@ -6,5 +6,10 @@
  * a WordPress checkout.
  */
 
+// Every plugin file exits when loaded outside WordPress (direct-access guard).
+if ( ! defined( 'ABSPATH' ) ) {
+	define( 'ABSPATH', dirname( __DIR__ ) . '/' );
+}
+
 require dirname( __DIR__ ) . '/vendor/autoload.php';
 require __DIR__ . '/Support/wp-stubs.php';

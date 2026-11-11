@@ -2,10 +2,14 @@
 /**
  * Outcome of one guard check (email-guard-spec, section 7).
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Guard;
+namespace HostSherlock\EmailGuardWp\Guard;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * The four spec fields plus the extras the spec allows: the raw API

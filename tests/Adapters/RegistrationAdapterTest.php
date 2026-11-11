@@ -3,10 +3,10 @@
  * Registration adapter: deny adds an error to the registration error bag.
  */
 
-namespace EmailSherlock\EmailGuardWp\Tests\Adapters;
+namespace HostSherlock\EmailGuardWp\Tests\Adapters;
 
-use EmailSherlock\EmailGuardWp\Adapters\RegistrationAdapter;
-use EmailSherlock\EmailGuardWp\Tests\Support\FakeGuardService;
+use HostSherlock\EmailGuardWp\Adapters\RegistrationAdapter;
+use HostSherlock\EmailGuardWp\Tests\Support\FakeGuardService;
 use PHPUnit\Framework\TestCase;
 
 final class RegistrationAdapterTest extends TestCase {
@@ -28,7 +28,7 @@ final class RegistrationAdapterTest extends TestCase {
 
 		$errors = apply_filters( 'registration_errors', new \WP_Error(), 'jane', 'jane@mailinator.com' );
 
-		$this->assertSame( 'emailsherlock_email_guard_denied', $errors->get_error_code() );
+		$this->assertSame( 'hostsherlock_email_guard_denied', $errors->get_error_code() );
 		$this->assertSame( 'Blocked address.', $errors->get_error_message() );
 		$this->assertSame( 'jane@mailinator.com', $service->checks[0]['email'] );
 		$this->assertSame( 'registration', $service->checks[0]['form_id'] );

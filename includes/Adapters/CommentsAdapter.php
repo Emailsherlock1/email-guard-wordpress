@@ -2,12 +2,16 @@
 /**
  * Guards the WordPress core comment form.
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Adapters;
+namespace HostSherlock\EmailGuardWp\Adapters;
 
-use EmailSherlock\EmailGuardWp\GuardService;
+use HostSherlock\EmailGuardWp\GuardService;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Hooks pre_comment_approved: a denied address turns the submission into a
@@ -30,7 +34,7 @@ class CommentsAdapter implements AdapterInterface {
 	 * @return string
 	 */
 	public function label() {
-		return __( 'Comments', 'emailsherlock-email-guard' );
+		return __( 'Comments', 'hostsherlock-email-guard' );
 	}
 
 	/**
@@ -75,7 +79,7 @@ class CommentsAdapter implements AdapterInterface {
 
 		if ( $decision->is_denied() ) {
 			// Data 200 keeps core's comment error page with a back link.
-			return new \WP_Error( 'emailsherlock_email_guard_denied', $decision->message(), 200 );
+			return new \WP_Error( 'hostsherlock_email_guard_denied', $decision->message(), 200 );
 		}
 
 		if ( $decision->is_flagged() && 1 === (int) $approved ) {

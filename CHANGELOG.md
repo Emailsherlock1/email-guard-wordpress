@@ -10,8 +10,9 @@ First release.
 - Remote check against `POST /v1/verify/single` with degrade-to-local
   (fail-open by default), relay signal support.
 - Adapters: comments, registration, WooCommerce, Contact Form 7, WPForms,
-  Gravity Forms; adapter pattern open via the
-  `emailsherlock_email_guard_adapters` filter.
+  Gravity Forms, Elementor Pro forms, Fluent Forms, Ninja Forms, Formidable
+  Forms; adapter pattern open via the
+  `hostsherlock_email_guard_adapters` filter.
 - Per-verdict block / flag / allow policy, per-form toggles, custom blocked
   message.
 - Domain-only decision log (option-backed ring buffer) and domain-only

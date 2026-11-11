@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<ruleset name="EmailSherlock Email Guard">
-    <description>WordPress Coding Standards for EmailSherlock Email Guard</description>
+<ruleset name="HostSherlock Email Guard">
+    <description>WordPress Coding Standards for HostSherlock Email Guard</description>
 
     <!-- Scope: only plugin PHP files -->
     <file>.</file>
@@ -21,7 +21,7 @@
     <!-- Text domain must match plugin header -->
     <rule ref="WordPress.WP.I18n">
         <properties>
-            <property name="text_domain" type="array" value="emailsherlock-email-guard"/>
+            <property name="text_domain" type="array" value="hostsherlock-email-guard"/>
         </properties>
     </rule>
 
@@ -29,7 +29,7 @@
     <rule ref="WordPress.NamingConventions.PrefixAllGlobals">
         <properties>
             <property name="prefixes" type="array"
-                      value="emailsherlock_email_guard,EmailSherlock_Email_Guard,EMAILSHERLOCK_EMAIL_GUARD"/>
+                      value="hostsherlock_email_guard,HostSherlock_Email_Guard,HOSTSHERLOCK_EMAIL_GUARD"/>
         </properties>
     </rule>
 </ruleset>

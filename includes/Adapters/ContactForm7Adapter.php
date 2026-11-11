@@ -2,12 +2,16 @@
 /**
  * Guards Contact Form 7 email fields.
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Adapters;
+namespace HostSherlock\EmailGuardWp\Adapters;
 
-use EmailSherlock\EmailGuardWp\GuardService;
+use HostSherlock\EmailGuardWp\GuardService;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Hooks the CF7 field validation filters for email and email* tags: a denied
@@ -30,7 +34,7 @@ class ContactForm7Adapter implements AdapterInterface {
 	 * @return string
 	 */
 	public function label() {
-		return __( 'Contact Form 7', 'emailsherlock-email-guard' );
+		return __( 'Contact Form 7', 'hostsherlock-email-guard' );
 	}
 
 	/**

@@ -2,18 +2,26 @@
 /**
  * Plugin bootstrap: wires settings, service, adapters, and admin.
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp;
+namespace HostSherlock\EmailGuardWp;
 
-use EmailSherlock\EmailGuardWp\Adapters\AdapterInterface;
-use EmailSherlock\EmailGuardWp\Adapters\CommentsAdapter;
-use EmailSherlock\EmailGuardWp\Adapters\ContactForm7Adapter;
-use EmailSherlock\EmailGuardWp\Adapters\GravityFormsAdapter;
-use EmailSherlock\EmailGuardWp\Adapters\RegistrationAdapter;
-use EmailSherlock\EmailGuardWp\Adapters\WooCommerceAdapter;
-use EmailSherlock\EmailGuardWp\Adapters\WpFormsAdapter;
+use HostSherlock\EmailGuardWp\Adapters\AdapterInterface;
+use HostSherlock\EmailGuardWp\Adapters\CommentsAdapter;
+use HostSherlock\EmailGuardWp\Adapters\ContactForm7Adapter;
+use HostSherlock\EmailGuardWp\Adapters\ElementorFormsAdapter;
+use HostSherlock\EmailGuardWp\Adapters\FluentFormsAdapter;
+use HostSherlock\EmailGuardWp\Adapters\FormidableFormsAdapter;
+use HostSherlock\EmailGuardWp\Adapters\GravityFormsAdapter;
+use HostSherlock\EmailGuardWp\Adapters\NinjaFormsAdapter;
+use HostSherlock\EmailGuardWp\Adapters\RegistrationAdapter;
+use HostSherlock\EmailGuardWp\Adapters\WooCommerceAdapter;
+use HostSherlock\EmailGuardWp\Adapters\WpFormsAdapter;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * One instance per request. Adapters self-report availability, so a form
@@ -75,6 +83,10 @@ class Plugin {
 				new ContactForm7Adapter(),
 				new WpFormsAdapter(),
 				new GravityFormsAdapter(),
+				new ElementorFormsAdapter(),
+				new FluentFormsAdapter(),
+				new NinjaFormsAdapter(),
+				new FormidableFormsAdapter(),
 			);
 
 			/**
@@ -83,7 +95,7 @@ class Plugin {
 			 *
 			 * @param AdapterInterface[] $adapters Adapter instances.
 			 */
-			$adapters = apply_filters( 'emailsherlock_email_guard_adapters', $adapters );
+			$adapters = apply_filters( 'hostsherlock_email_guard_adapters', $adapters );
 
 			$this->adapters = array_values(
 				array_filter(

@@ -2,12 +2,16 @@
 /**
  * Guards Gravity Forms email fields.
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Adapters;
+namespace HostSherlock\EmailGuardWp\Adapters;
 
-use EmailSherlock\EmailGuardWp\GuardService;
+use HostSherlock\EmailGuardWp\GuardService;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Hooks gform_field_validation for email fields: a denied address fails the
@@ -30,7 +34,7 @@ class GravityFormsAdapter implements AdapterInterface {
 	 * @return string
 	 */
 	public function label() {
-		return __( 'Gravity Forms', 'emailsherlock-email-guard' );
+		return __( 'Gravity Forms', 'hostsherlock-email-guard' );
 	}
 
 	/**

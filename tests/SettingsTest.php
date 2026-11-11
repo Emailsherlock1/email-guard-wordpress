@@ -3,9 +3,9 @@
  * Settings: defaults, policy mapping onto block_on / review_on, sanitize.
  */
 
-namespace EmailSherlock\EmailGuardWp\Tests;
+namespace HostSherlock\EmailGuardWp\Tests;
 
-use EmailSherlock\EmailGuardWp\Settings;
+use HostSherlock\EmailGuardWp\Settings;
 use PHPUnit\Framework\TestCase;
 
 final class SettingsTest extends TestCase {
@@ -26,7 +26,7 @@ final class SettingsTest extends TestCase {
 
 	public function testEveryFormEnabledByDefault(): void {
 		$settings = new Settings();
-		foreach ( array( 'comments', 'registration', 'woocommerce', 'contact_form_7', 'wpforms', 'gravity_forms' ) as $form_id ) {
+		foreach ( array_keys( Settings::defaults()['forms'] ) as $form_id ) {
 			$this->assertTrue( $settings->form_enabled( $form_id ), $form_id );
 		}
 		$this->assertFalse( $settings->form_enabled( 'nonexistent' ) );
@@ -90,6 +90,34 @@ final class SettingsTest extends TestCase {
 		$this->assertFalse( $clean['forms']['registration'] );
 		$this->assertSame( 200, $clean['log_size'] );
 		$this->assertSame( 'xHi', $clean['blocked_message'] );
+	}
+
+	public function testSanitizeRejectsWrongShapes(): void {
+		$settings = new Settings();
+		$clean    = $settings->sanitize(
+			array(
+				'api_key'         => array( 'smuggled' ),
+				'verdict_actions' => 'block',
+				'forms'           => 'all',
+				'log_size'        => '-5',
+				'blocked_message' => array( '<b>x</b>' ),
+			)
+		);
+
+		$this->assertSame( '', $clean['api_key'] );
+		$this->assertSame( '', $clean['blocked_message'] );
+		// A scalar where a map belongs: every token keeps its default.
+		$this->assertSame( Settings::defaults()['verdict_actions'], $clean['verdict_actions'] );
+		$this->assertSame( array_fill_keys( array_keys( Settings::defaults()['forms'] ), false ), $clean['forms'] );
+		$this->assertSame( 5, $clean['log_size'] );
+		// Unknown keys never reach the stored option.
+		$this->assertEqualsCanonicalizing( array_keys( Settings::defaults() ), array_keys( $clean ) );
+	}
+
+	public function testSanitizeNormalisesActionCase(): void {
+		$clean = ( new Settings() )->sanitize( array( 'verdict_actions' => array( 'role' => 'BLOCK' ) ) );
+
+		$this->assertSame( 'block', $clean['verdict_actions']['role'] );
 	}
 
 	public function testBlockedMessageFallsBackToDefault(): void {

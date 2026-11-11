@@ -2,10 +2,14 @@
 /**
  * Minimal HTTP response value object.
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Guard;
+namespace HostSherlock\EmailGuardWp\Guard;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Status + body, nothing else. The guard classifies everything itself.

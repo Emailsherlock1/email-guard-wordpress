@@ -2,10 +2,14 @@
 /**
  * Raised when the bundled disposable snapshot cannot be loaded.
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Guard;
+namespace HostSherlock\EmailGuardWp\Guard;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * A packaging defect, not a runtime condition: the guard skips the

@@ -2,12 +2,16 @@
 /**
  * Guards the WordPress core registration form.
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Adapters;
+namespace HostSherlock\EmailGuardWp\Adapters;
 
-use EmailSherlock\EmailGuardWp\GuardService;
+use HostSherlock\EmailGuardWp\GuardService;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Hooks registration_errors: a denied address adds an error and the signup
@@ -31,7 +35,7 @@ class RegistrationAdapter implements AdapterInterface {
 	 * @return string
 	 */
 	public function label() {
-		return __( 'User registration', 'emailsherlock-email-guard' );
+		return __( 'User registration', 'hostsherlock-email-guard' );
 	}
 
 	/**
@@ -64,7 +68,7 @@ class RegistrationAdapter implements AdapterInterface {
 
 		$decision = $this->service->check( (string) $user_email, $this->id() );
 		if ( $decision->is_denied() ) {
-			$errors->add( 'emailsherlock_email_guard_denied', $decision->message() );
+			$errors->add( 'hostsherlock_email_guard_denied', $decision->message() );
 		}
 
 		return $errors;

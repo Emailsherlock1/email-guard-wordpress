@@ -2,10 +2,14 @@
 /**
  * Minimal HTTP contract the guard needs.
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Guard;
+namespace HostSherlock\EmailGuardWp\Guard;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * One JSON POST with a hard time budget. Implementations throw

@@ -4,15 +4,15 @@
  * degrade-to-local when the API is down.
  */
 
-namespace EmailSherlock\EmailGuardWp\Tests;
+namespace HostSherlock\EmailGuardWp\Tests;
 
-use EmailSherlock\EmailGuardWp\DecisionLog;
-use EmailSherlock\EmailGuardWp\Guard\DisposableSnapshot;
-use EmailSherlock\EmailGuardWp\Guard\Guard;
-use EmailSherlock\EmailGuardWp\Guard\Reporter;
-use EmailSherlock\EmailGuardWp\GuardService;
-use EmailSherlock\EmailGuardWp\Settings;
-use EmailSherlock\EmailGuardWp\Tests\Support\MockTransport;
+use HostSherlock\EmailGuardWp\DecisionLog;
+use HostSherlock\EmailGuardWp\Guard\DisposableSnapshot;
+use HostSherlock\EmailGuardWp\Guard\Guard;
+use HostSherlock\EmailGuardWp\Guard\Reporter;
+use HostSherlock\EmailGuardWp\GuardService;
+use HostSherlock\EmailGuardWp\Settings;
+use HostSherlock\EmailGuardWp\Tests\Support\MockTransport;
 use PHPUnit\Framework\TestCase;
 
 final class GuardServiceTest extends TestCase {
@@ -74,7 +74,7 @@ final class GuardServiceTest extends TestCase {
 		$this->assertSame( 'No throwaway addresses, please.', $decision->message() );
 
 		add_filter(
-			'emailsherlock_email_guard_denied_message',
+			'hostsherlock_email_guard_denied_message',
 			static function ( $message, $result, $form_id ) {
 				return $message . ' (' . $form_id . ')';
 			},

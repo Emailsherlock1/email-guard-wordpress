@@ -8,7 +8,7 @@ every disposable address. This plugin ports
 [email-guard-core-php](https://github.com/Emailsherlock1/email-guard-core-php)
 to the WordPress runtime (PHP 7.4+, WP HTTP API, no composer at runtime):
 syntax profile, reserved TLDs, 70k+ disposable domains, all checked locally
-with zero latency. An [EmailSherlock API key](https://emailsherlock.com/api/docs)
+with zero latency. A [HostSherlock API key](https://www.hostsherlock.com/api/docs)
 adds live MX, SMTP probe, a fresh disposable list, relay detection, and the
 guard dashboard.
 
@@ -25,10 +25,14 @@ set (vendored under `tests/vectors/`).
 | Contact Form 7 | `wpcf7_validate_email(*)` | CF7 installed |
 | WPForms | `wpforms_process` | WPForms installed |
 | Gravity Forms | `gform_field_validation` | Gravity Forms installed |
+| Elementor Pro forms | `elementor_pro/forms/validation/email` | Elementor Pro installed |
+| Fluent Forms (5.0+) | `fluentform/validate_input_item_input_email` | Fluent Forms installed |
+| Ninja Forms | `ninja_forms_submit_data` (email fields read from the saved form) | Ninja Forms installed |
+| Formidable Forms | `frm_validate_email_field_entry` | Formidable installed |
 
 Each surface is one class implementing `AdapterInterface`
 (`includes/Adapters/`). Another form plugin means one more adapter, wired in
-via the `emailsherlock_email_guard_adapters` filter.
+via the `hostsherlock_email_guard_adapters` filter.
 
 ## Policy is yours
 
@@ -48,13 +52,13 @@ policy section.
 With an API key, each decision is reported (batched, on `shutdown`,
 non-blocking, fail-silent) to `POST /v1/guard/events`: domain, verdict,
 action, reasons. Never the address. The optional site key from your
-EmailSherlock Guard property rides along as `property_key` so the dashboard
+HostSherlock Guard property rides along as `property_key` so the dashboard
 attributes decisions to this site. No key, no telemetry.
 
 ## Repo layout
 
 ```
-email-guard.php          plugin header + autoloader + boot
+hostsherlock-email-guard.php          plugin header + autoloader + boot
 includes/Guard/          the ported decision engine (spec 1.3.0)
 includes/Adapters/       one class per form surface
 includes/Admin/          settings screen + ajax connection test

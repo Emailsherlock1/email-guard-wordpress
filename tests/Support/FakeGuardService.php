@@ -3,11 +3,11 @@
  * GuardService test double for adapter tests.
  */
 
-namespace EmailSherlock\EmailGuardWp\Tests\Support;
+namespace HostSherlock\EmailGuardWp\Tests\Support;
 
-use EmailSherlock\EmailGuardWp\Decision;
-use EmailSherlock\EmailGuardWp\GuardService;
-use EmailSherlock\EmailGuardWp\Settings;
+use HostSherlock\EmailGuardWp\Decision;
+use HostSherlock\EmailGuardWp\GuardService;
+use HostSherlock\EmailGuardWp\Settings;
 
 /**
  * Returns a canned Decision and records every check() call, so adapter

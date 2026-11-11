@@ -2,13 +2,13 @@
 /**
  * WpFormsAdapter wiring tests.
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Tests\Adapters {
+namespace HostSherlock\EmailGuardWp\Tests\Adapters {
 
-	use EmailSherlock\EmailGuardWp\Adapters\WpFormsAdapter;
-	use EmailSherlock\EmailGuardWp\Tests\Support\FakeGuardService;
+	use HostSherlock\EmailGuardWp\Adapters\WpFormsAdapter;
+	use HostSherlock\EmailGuardWp\Tests\Support\FakeGuardService;
 	use PHPUnit\Framework\TestCase;
 
 	/**
@@ -248,13 +248,13 @@ namespace {
 		 * Shared WPForms plugin fake, mirroring the real global accessor. The
 		 * adapter under test and the assertions both resolve to this instance.
 		 *
-		 * @return \EmailSherlock\EmailGuardWp\Tests\Adapters\WpFormsPluginFake
+		 * @return \HostSherlock\EmailGuardWp\Tests\Adapters\WpFormsPluginFake
 		 */
 		function wpforms() {
 			static $instance = null;
 
 			if ( null === $instance ) {
-				$instance = new \EmailSherlock\EmailGuardWp\Tests\Adapters\WpFormsPluginFake();
+				$instance = new \HostSherlock\EmailGuardWp\Tests\Adapters\WpFormsPluginFake();
 			}
 
 			return $instance;

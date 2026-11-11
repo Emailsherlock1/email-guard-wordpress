@@ -2,12 +2,16 @@
 /**
  * Guards WPForms submissions.
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Adapters;
+namespace HostSherlock\EmailGuardWp\Adapters;
 
-use EmailSherlock\EmailGuardWp\GuardService;
+use HostSherlock\EmailGuardWp\GuardService;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Hooks wpforms_process: every non-empty email field runs through the guard,
@@ -31,7 +35,7 @@ class WpFormsAdapter implements AdapterInterface {
 	 * @return string
 	 */
 	public function label() {
-		return __( 'WPForms', 'emailsherlock-email-guard' );
+		return __( 'WPForms', 'hostsherlock-email-guard' );
 	}
 
 	/**

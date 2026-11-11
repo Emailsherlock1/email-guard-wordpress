@@ -2,10 +2,14 @@
 /**
  * Transport failure with an attributed cause (email-guard-spec, section 5.2).
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Guard;
+namespace HostSherlock\EmailGuardWp\Guard;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Thrown by a transport on any network-level failure. The guard turns it

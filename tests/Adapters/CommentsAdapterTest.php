@@ -4,10 +4,10 @@
  * for moderation, trusted paths pass through.
  */
 
-namespace EmailSherlock\EmailGuardWp\Tests\Adapters;
+namespace HostSherlock\EmailGuardWp\Tests\Adapters;
 
-use EmailSherlock\EmailGuardWp\Adapters\CommentsAdapter;
-use EmailSherlock\EmailGuardWp\Tests\Support\FakeGuardService;
+use HostSherlock\EmailGuardWp\Adapters\CommentsAdapter;
+use HostSherlock\EmailGuardWp\Tests\Support\FakeGuardService;
 use PHPUnit\Framework\TestCase;
 
 final class CommentsAdapterTest extends TestCase {

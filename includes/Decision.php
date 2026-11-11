@@ -2,12 +2,16 @@
 /**
  * What an adapter should do with one submission.
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp;
+namespace HostSherlock\EmailGuardWp;
 
-use EmailSherlock\EmailGuardWp\Guard\Result;
+use HostSherlock\EmailGuardWp\Guard\Result;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * The service-level wrapper around a guard Result: deny carries the

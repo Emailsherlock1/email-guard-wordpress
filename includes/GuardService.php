@@ -2,13 +2,17 @@
 /**
  * The glue between form adapters and the guard engine.
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp;
+namespace HostSherlock\EmailGuardWp;
 
-use EmailSherlock\EmailGuardWp\Guard\Guard;
-use EmailSherlock\EmailGuardWp\Guard\Reporter;
+use HostSherlock\EmailGuardWp\Guard\Guard;
+use HostSherlock\EmailGuardWp\Guard\Reporter;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * One entry point for every adapter: check() runs the guard, writes the
@@ -71,11 +75,11 @@ class GuardService {
 			 * Filter the visitor-facing message for a denied address.
 			 *
 			 * @param string                                $message Message from settings.
-			 * @param \EmailSherlock\EmailGuardWp\Guard\Result $result  The guard decision.
+			 * @param \HostSherlock\EmailGuardWp\Guard\Result $result  The guard decision.
 			 * @param string                                $form_id Adapter id.
 			 */
 			$message = apply_filters(
-				'emailsherlock_email_guard_denied_message',
+				'hostsherlock_email_guard_denied_message',
 				$this->settings->blocked_message(),
 				$result,
 				$form_id
