@@ -10,7 +10,11 @@ namespace HostSherlock\EmailGuardWp;
 use HostSherlock\EmailGuardWp\Adapters\AdapterInterface;
 use HostSherlock\EmailGuardWp\Adapters\CommentsAdapter;
 use HostSherlock\EmailGuardWp\Adapters\ContactForm7Adapter;
+use HostSherlock\EmailGuardWp\Adapters\ElementorFormsAdapter;
+use HostSherlock\EmailGuardWp\Adapters\FluentFormsAdapter;
+use HostSherlock\EmailGuardWp\Adapters\FormidableFormsAdapter;
 use HostSherlock\EmailGuardWp\Adapters\GravityFormsAdapter;
+use HostSherlock\EmailGuardWp\Adapters\NinjaFormsAdapter;
 use HostSherlock\EmailGuardWp\Adapters\RegistrationAdapter;
 use HostSherlock\EmailGuardWp\Adapters\WooCommerceAdapter;
 use HostSherlock\EmailGuardWp\Adapters\WpFormsAdapter;
@@ -79,6 +83,10 @@ class Plugin {
 				new ContactForm7Adapter(),
 				new WpFormsAdapter(),
 				new GravityFormsAdapter(),
+				new ElementorFormsAdapter(),
+				new FluentFormsAdapter(),
+				new NinjaFormsAdapter(),
+				new FormidableFormsAdapter(),
 			);
 
 			/**

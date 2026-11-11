@@ -25,6 +25,10 @@ set (vendored under `tests/vectors/`).
 | Contact Form 7 | `wpcf7_validate_email(*)` | CF7 installed |
 | WPForms | `wpforms_process` | WPForms installed |
 | Gravity Forms | `gform_field_validation` | Gravity Forms installed |
+| Elementor Pro forms | `elementor_pro/forms/validation/email` | Elementor Pro installed |
+| Fluent Forms (5.0+) | `fluentform/validate_input_item_input_email` | Fluent Forms installed |
+| Ninja Forms | `ninja_forms_submit_data` (email fields read from the saved form) | Ninja Forms installed |
+| Formidable Forms | `frm_validate_email_field_entry` | Formidable installed |
 
 Each surface is one class implementing `AdapterInterface`
 (`includes/Adapters/`). Another form plugin means one more adapter, wired in

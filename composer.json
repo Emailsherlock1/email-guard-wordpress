@@ -1,6 +1,6 @@
 {
   "name": "emailsherlock/email-guard-wordpress",
-  "description": "HostSherlock Email Guard for WordPress: blocks disposable and undeliverable email addresses at form submit across comments, registration, WooCommerce, Contact Form 7, WPForms, and Gravity Forms.",
+  "description": "HostSherlock Email Guard for WordPress: blocks disposable and undeliverable email addresses at form submit across comments, registration, WooCommerce, Contact Form 7, WPForms, Gravity Forms, Elementor Pro forms, Fluent Forms, Ninja Forms, and Formidable Forms.",
   "type": "wordpress-plugin",
   "license": "GPL-2.0-or-later",
   "keywords": ["wordpress", "plugin", "email", "email-validation", "email-verification", "disposable", "form-validation", "hostsherlock"],

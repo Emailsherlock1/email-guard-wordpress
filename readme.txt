@@ -8,7 +8,7 @@ Stable tag: 0.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Blocks disposable and undeliverable email addresses at form submit: comments, registration, WooCommerce, Contact Form 7, WPForms, Gravity Forms.
+Blocks disposable and undeliverable emails in comments, signup, WooCommerce, Contact Form 7, WPForms, Elementor, Gravity Forms and more.
 
 == Description ==
 
@@ -35,8 +35,12 @@ Blocks disposable and undeliverable email addresses at form submit: comments, re
 * Contact Form 7 email fields
 * WPForms email fields
 * Gravity Forms email fields
+* Elementor Pro form email fields
+* Fluent Forms email fields
+* Ninja Forms email fields
+* Formidable Forms email fields
 
-Each form has its own on/off toggle. Adapters for WooCommerce, Contact Form 7, WPForms, and Gravity Forms only activate when that plugin is installed.
+Each form has its own on/off toggle. The adapters for WooCommerce and the form plugins only activate when that plugin is installed.
 
 **You decide the policy**
 
@@ -89,4 +93,4 @@ Check the decision log under Settings > Email Guard. Each decision lists its rea
 == Changelog ==
 
 = 0.1.0 =
-* First release. Local checks (syntax profile, reserved TLDs, disposable snapshot), Verify API escalation with degrade-to-local, per-verdict block/flag/allow policy, adapters for comments, registration, WooCommerce, Contact Form 7, WPForms, Gravity Forms, domain-only decision log and telemetry.
+* First release. Local checks (syntax profile, reserved TLDs, disposable snapshot), Verify API escalation with degrade-to-local, per-verdict block/flag/allow policy, adapters for comments, registration, WooCommerce, Contact Form 7, WPForms, Gravity Forms, Elementor Pro forms, Fluent Forms, Ninja Forms, Formidable Forms, domain-only decision log and telemetry.

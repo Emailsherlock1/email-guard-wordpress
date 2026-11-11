@@ -26,7 +26,7 @@ final class SettingsTest extends TestCase {
 
 	public function testEveryFormEnabledByDefault(): void {
 		$settings = new Settings();
-		foreach ( array( 'comments', 'registration', 'woocommerce', 'contact_form_7', 'wpforms', 'gravity_forms' ) as $form_id ) {
+		foreach ( array_keys( Settings::defaults()['forms'] ) as $form_id ) {
 			$this->assertTrue( $settings->form_enabled( $form_id ), $form_id );
 		}
 		$this->assertFalse( $settings->form_enabled( 'nonexistent' ) );

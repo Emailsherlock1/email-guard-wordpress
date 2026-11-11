@@ -2,7 +2,7 @@
 /**
  * Plugin Name: HostSherlock Email Guard
  * Plugin URI: https://www.hostsherlock.com/integrations/wordpress-email-guard
- * Description: Blocks disposable and undeliverable email addresses at form submit: comments, registration, WooCommerce, Contact Form 7, WPForms, Gravity Forms.
+ * Description: Blocks disposable and undeliverable emails in comments, signup, WooCommerce, Contact Form 7, WPForms, Elementor, Gravity Forms and more.
  * Version: 0.1.0
  * Requires at least: 6.0
  * Requires PHP: 7.4
