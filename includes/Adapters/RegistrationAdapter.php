@@ -9,6 +9,10 @@ namespace HostSherlock\EmailGuardWp\Adapters;
 
 use HostSherlock\EmailGuardWp\GuardService;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Hooks registration_errors: a denied address adds an error and the signup
  * never happens. A flagged address registers normally; the decision shows

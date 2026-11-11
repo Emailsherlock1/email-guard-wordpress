@@ -9,6 +9,10 @@ namespace HostSherlock\EmailGuardWp\Adapters;
 
 use HostSherlock\EmailGuardWp\GuardService;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Two surfaces, one adapter: the billing email at checkout
  * (woocommerce_after_checkout_validation) and the email on the account

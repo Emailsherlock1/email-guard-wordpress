@@ -11,6 +11,10 @@ use HostSherlock\EmailGuardWp\Guard\TransportException;
 use HostSherlock\EmailGuardWp\Guard\TransportInterface;
 use HostSherlock\EmailGuardWp\Guard\TransportResponse;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * wp_remote_post with a hard time budget. The non-blocking mode is for
  * telemetry: the request is dispatched and the response ignored, so a form

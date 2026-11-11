@@ -9,6 +9,10 @@ namespace HostSherlock\EmailGuardWp\Adapters;
 
 use HostSherlock\EmailGuardWp\GuardService;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Hooks wpforms_process: every non-empty email field runs through the guard,
  * and a denied address writes its message into WPForms' own error bag, which

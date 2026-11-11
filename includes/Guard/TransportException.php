@@ -7,6 +7,10 @@
 
 namespace HostSherlock\EmailGuardWp\Guard;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Thrown by a transport on any network-level failure. The guard turns it
  * into a degraded result decided by fail_open alone.

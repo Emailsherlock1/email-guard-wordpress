@@ -9,6 +9,10 @@ namespace HostSherlock\EmailGuardWp\Adapters;
 
 use HostSherlock\EmailGuardWp\GuardService;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * An adapter owns one form surface: it knows how to detect its host plugin,
  * where the email field lives, and how to reject or flag a submission in

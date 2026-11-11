@@ -9,6 +9,10 @@ namespace HostSherlock\EmailGuardWp\Adapters;
 
 use HostSherlock\EmailGuardWp\GuardService;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Hooks the CF7 field validation filters for email and email* tags: a denied
  * address invalidates the field with the visitor-facing message, a flagged

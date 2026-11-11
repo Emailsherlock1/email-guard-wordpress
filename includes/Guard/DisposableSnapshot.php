@@ -8,6 +8,10 @@
 
 namespace HostSherlock\EmailGuardWp\Guard;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Matching is exact by design: the Verify API matches its live list the
  * same way, and the local check must never block an address the API would
@@ -63,7 +67,8 @@ class DisposableSnapshot {
 		}
 
 		// phpcs:disable WordPress.Security.EscapeOutput.ExceptionNotEscaped -- internal SnapshotException, caught by the guard's fail-open path, never rendered to a visitor.
-		$raw = @file_get_contents( $this->path ); // phpcs:ignore WordPress.PHP.NoSilencedErrors.Discouraged -- failure is classified below.
+		// A local file bundled with the plugin, never a URL: WP_Filesystem is for writes and remote paths.
+		$raw = is_readable( $this->path ) ? file_get_contents( $this->path ) : false; // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 		if ( false === $raw ) {
 			throw new SnapshotException( "Cannot read disposable snapshot at {$this->path}" );
 		}

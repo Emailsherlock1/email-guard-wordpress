@@ -9,6 +9,10 @@ namespace HostSherlock\EmailGuardWp;
 
 use HostSherlock\EmailGuardWp\Guard\Verdict;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Policy belongs to you, the site owner, not to the server: every threshold
  * and toggle lives here (email-guard design principle). The per-verdict
@@ -187,37 +191,53 @@ class Settings {
 		}
 
 		$clean             = array();
-		$clean['api_key']  = isset( $raw['api_key'] ) ? sanitize_text_field( (string) $raw['api_key'] ) : '';
-		$clean['site_key'] = isset( $raw['site_key'] ) ? sanitize_text_field( (string) $raw['site_key'] ) : '';
+		$clean['api_key']  = self::text_field( $raw, 'api_key' );
+		$clean['site_key'] = self::text_field( $raw, 'site_key' );
 
 		// Checkboxes: absent means unchecked.
 		$clean['fail_open']   = ! empty( $raw['fail_open'] );
 		$clean['log_enabled'] = ! empty( $raw['log_enabled'] );
 
+		// Every action is checked against a fixed allow-list; anything else falls back to the default.
+		$raw_actions              = isset( $raw['verdict_actions'] ) && is_array( $raw['verdict_actions'] ) ? $raw['verdict_actions'] : array();
 		$clean['verdict_actions'] = array();
 		$allowed_actions          = array( self::ACTION_BLOCK, self::ACTION_FLAG, self::ACTION_ALLOW );
 		foreach ( self::POLICY_TOKENS as $token ) {
-			$action = isset( $raw['verdict_actions'][ $token ] ) ? (string) $raw['verdict_actions'][ $token ] : $defaults['verdict_actions'][ $token ];
+			$action = isset( $raw_actions[ $token ] ) && is_string( $raw_actions[ $token ] ) ? sanitize_key( $raw_actions[ $token ] ) : '';
 			if ( ! in_array( $action, $allowed_actions, true ) ) {
 				$action = $defaults['verdict_actions'][ $token ];
 			}
 			$clean['verdict_actions'][ $token ] = $action;
 		}
 
+		// Only the known form ids survive, each as a boolean.
+		$raw_forms      = isset( $raw['forms'] ) && is_array( $raw['forms'] ) ? $raw['forms'] : array();
 		$clean['forms'] = array();
 		foreach ( array_keys( $defaults['forms'] ) as $form_id ) {
-			$clean['forms'][ $form_id ] = ! empty( $raw['forms'][ $form_id ] );
+			$clean['forms'][ $form_id ] = ! empty( $raw_forms[ $form_id ] );
 		}
 
-		$clean['blocked_message'] = isset( $raw['blocked_message'] ) ? sanitize_text_field( (string) $raw['blocked_message'] ) : '';
+		$clean['blocked_message'] = self::text_field( $raw, 'blocked_message' );
 
-		$size              = isset( $raw['log_size'] ) ? (int) $raw['log_size'] : $defaults['log_size'];
+		$size              = isset( $raw['log_size'] ) && is_scalar( $raw['log_size'] ) ? absint( $raw['log_size'] ) : $defaults['log_size'];
 		$clean['log_size'] = max( 1, min( 200, $size ) );
 
 		// Bust the in-memory cache so a save is visible immediately.
 		$this->settings = null;
 
 		return $clean;
+	}
+
+	/**
+	 * One submitted text field through sanitize_text_field(); a missing or
+	 * non-string value (an array smuggled into the field) becomes ''.
+	 *
+	 * @param array  $raw Raw submitted settings.
+	 * @param string $key Field name.
+	 * @return string
+	 */
+	private static function text_field( array $raw, $key ) {
+		return isset( $raw[ $key ] ) && is_string( $raw[ $key ] ) ? sanitize_text_field( $raw[ $key ] ) : '';
 	}
 
 	/**

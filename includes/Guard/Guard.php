@@ -8,6 +8,10 @@
 
 namespace HostSherlock\EmailGuardWp\Guard;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Implements email-guard-spec 1.3.0. Local checks run first and cost
  * nothing. Only addresses that pass them escalate to the Verify API, and

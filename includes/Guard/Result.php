@@ -7,6 +7,10 @@
 
 namespace HostSherlock\EmailGuardWp\Guard;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * The four spec fields plus the extras the spec allows: the raw API
  * response, the relay signal, and the domain (for domain-only telemetry).

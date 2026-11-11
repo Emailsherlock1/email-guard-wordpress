@@ -15,6 +15,10 @@ use HostSherlock\EmailGuardWp\Adapters\RegistrationAdapter;
 use HostSherlock\EmailGuardWp\Adapters\WooCommerceAdapter;
 use HostSherlock\EmailGuardWp\Adapters\WpFormsAdapter;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * One instance per request. Adapters self-report availability, so a form
  * plugin that is not installed costs one class_exists call and nothing else.

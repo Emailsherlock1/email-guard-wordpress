@@ -7,6 +7,10 @@
 
 namespace HostSherlock\EmailGuardWp\Guard;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Structural rules (exactly one @, both parts non-empty) always apply.
  * Profile rules are skipped for a part that contains non-ASCII characters:

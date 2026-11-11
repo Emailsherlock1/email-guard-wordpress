@@ -12,6 +12,10 @@ use HostSherlock\EmailGuardWp\Guard\TransportException;
 use HostSherlock\EmailGuardWp\Settings;
 use HostSherlock\EmailGuardWp\WpTransport;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Sends one telemetry event to POST /v1/guard/events with the key the admin
  * typed (falling back to the saved one). The endpoint is free and exercises

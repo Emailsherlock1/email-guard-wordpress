@@ -7,6 +7,10 @@
 
 namespace HostSherlock\EmailGuardWp\Guard;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Collects one event per guard decision and ships them, batched, to
  * POST /v1/guard/events on shutdown.

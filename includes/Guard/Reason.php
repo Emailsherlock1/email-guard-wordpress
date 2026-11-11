@@ -7,6 +7,10 @@
 
 namespace HostSherlock\EmailGuardWp\Guard;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Reasons from the Verify API pass through verbatim and are not enumerated
  * here; the spec requires unrecognized strings to survive untouched.

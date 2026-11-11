@@ -7,6 +7,10 @@
 
 namespace HostSherlock\EmailGuardWp\Guard;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Classification of an address. Mirrors the `result` enum of the Verify API.
  * Plain constants instead of a PHP 8.1 enum: the plugin targets PHP 7.4.

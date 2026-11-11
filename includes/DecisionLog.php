@@ -9,6 +9,10 @@ namespace HostSherlock\EmailGuardWp;
 
 use HostSherlock\EmailGuardWp\Guard\Result;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * A ring buffer in one non-autoloaded option. Stores the domain, never the
  * address: the local part is personal data and has no diagnostic value here.

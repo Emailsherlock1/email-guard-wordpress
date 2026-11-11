@@ -10,6 +10,10 @@ namespace HostSherlock\EmailGuardWp;
 use HostSherlock\EmailGuardWp\Guard\Guard;
 use HostSherlock\EmailGuardWp\Guard\Reporter;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * One entry point for every adapter: check() runs the guard, writes the
  * local decision log, queues the telemetry event, and maps the spec action

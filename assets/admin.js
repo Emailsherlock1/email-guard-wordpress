@@ -5,16 +5,16 @@
 	'use strict';
 
 	document.addEventListener( 'DOMContentLoaded', function () {
-		var button = document.getElementById( 'email-guard-test-button' );
-		var result = document.getElementById( 'email-guard-test-result' );
+		var button = document.getElementById( 'hostsherlock-email-guard-test-button' );
+		var result = document.getElementById( 'hostsherlock-email-guard-test-result' );
 		if ( ! button || ! result || 'undefined' === typeof window.hostsherlockEmailGuard ) {
 			return;
 		}
 
 		button.addEventListener( 'click', function () {
 			var config = window.hostsherlockEmailGuard;
-			var apiKey = document.getElementById( 'email-guard-api-key' );
-			var siteKey = document.getElementById( 'email-guard-site-key' );
+			var apiKey = document.getElementById( 'hostsherlock-email-guard-api-key' );
+			var siteKey = document.getElementById( 'hostsherlock-email-guard-site-key' );
 
 			button.disabled = true;
 			result.textContent = config.testing;

@@ -8,6 +8,10 @@
 
 namespace HostSherlock\EmailGuardWp\Guard;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * The lists are part of the spec; changing them here without a spec release
  * breaks conformance.

@@ -9,6 +9,10 @@ namespace HostSherlock\EmailGuardWp;
 
 use HostSherlock\EmailGuardWp\Guard\Result;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * The service-level wrapper around a guard Result: deny carries the
  * visitor-facing message, flag means let it through but mark it.

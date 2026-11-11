@@ -11,6 +11,10 @@ use HostSherlock\EmailGuardWp\DecisionLog;
 use HostSherlock\EmailGuardWp\Plugin;
 use HostSherlock\EmailGuardWp\Settings;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * One page, four sections: connection, protected forms, policy, decision
  * log. Saving goes through options.php (nonce and capability handled by
@@ -145,9 +149,9 @@ class SettingsPage {
 				<h2><?php esc_html_e( 'Connection', 'hostsherlock-email-guard' ); ?></h2>
 				<table class="form-table" role="presentation">
 					<tr>
-						<th scope="row"><label for="email-guard-api-key"><?php esc_html_e( 'API key', 'hostsherlock-email-guard' ); ?></label></th>
+						<th scope="row"><label for="hostsherlock-email-guard-api-key"><?php esc_html_e( 'API key', 'hostsherlock-email-guard' ); ?></label></th>
 						<td>
-							<input type="password" id="email-guard-api-key" class="regular-text" autocomplete="off"
+							<input type="password" id="hostsherlock-email-guard-api-key" class="regular-text" autocomplete="off"
 								name="<?php echo esc_attr( Settings::OPTION ); ?>[api_key]"
 								value="<?php echo esc_attr( $settings['api_key'] ); ?>">
 							<p class="description">
@@ -156,9 +160,9 @@ class SettingsPage {
 						</td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="email-guard-site-key"><?php esc_html_e( 'Site key', 'hostsherlock-email-guard' ); ?></label></th>
+						<th scope="row"><label for="hostsherlock-email-guard-site-key"><?php esc_html_e( 'Site key', 'hostsherlock-email-guard' ); ?></label></th>
 						<td>
-							<input type="text" id="email-guard-site-key" class="regular-text" autocomplete="off"
+							<input type="text" id="hostsherlock-email-guard-site-key" class="regular-text" autocomplete="off"
 								name="<?php echo esc_attr( Settings::OPTION ); ?>[site_key]"
 								value="<?php echo esc_attr( $settings['site_key'] ); ?>">
 							<p class="description">
@@ -169,8 +173,8 @@ class SettingsPage {
 					<tr>
 						<th scope="row"><?php esc_html_e( 'Connection test', 'hostsherlock-email-guard' ); ?></th>
 						<td>
-							<button type="button" class="button" id="email-guard-test-button"><?php esc_html_e( 'Test connection', 'hostsherlock-email-guard' ); ?></button>
-							<span id="email-guard-test-result" role="status"></span>
+							<button type="button" class="button" id="hostsherlock-email-guard-test-button"><?php esc_html_e( 'Test connection', 'hostsherlock-email-guard' ); ?></button>
+							<span id="hostsherlock-email-guard-test-result" role="status"></span>
 							<p class="description">
 								<?php esc_html_e( 'Sends one test event (no email address, no page data) to the HostSherlock API with the key above.', 'hostsherlock-email-guard' ); ?>
 							</p>
@@ -214,9 +218,9 @@ class SettingsPage {
 				<table class="form-table" role="presentation">
 					<?php foreach ( $this->policy_rows() as $token => $row ) : ?>
 						<tr>
-							<th scope="row"><label for="email-guard-action-<?php echo esc_attr( $token ); ?>"><?php echo esc_html( $row['label'] ); ?></label></th>
+							<th scope="row"><label for="hostsherlock-email-guard-action-<?php echo esc_attr( $token ); ?>"><?php echo esc_html( $row['label'] ); ?></label></th>
 							<td>
-								<select id="email-guard-action-<?php echo esc_attr( $token ); ?>"
+								<select id="hostsherlock-email-guard-action-<?php echo esc_attr( $token ); ?>"
 									name="<?php echo esc_attr( Settings::OPTION ); ?>[verdict_actions][<?php echo esc_attr( $token ); ?>]">
 									<?php foreach ( $this->action_choices() as $value => $label ) : ?>
 										<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $settings['verdict_actions'][ $token ], $value ); ?>><?php echo esc_html( $label ); ?></option>
@@ -237,9 +241,9 @@ class SettingsPage {
 						</td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="email-guard-blocked-message"><?php esc_html_e( 'Message on a blocked address', 'hostsherlock-email-guard' ); ?></label></th>
+						<th scope="row"><label for="hostsherlock-email-guard-blocked-message"><?php esc_html_e( 'Message on a blocked address', 'hostsherlock-email-guard' ); ?></label></th>
 						<td>
-							<input type="text" id="email-guard-blocked-message" class="large-text"
+							<input type="text" id="hostsherlock-email-guard-blocked-message" class="large-text"
 								name="<?php echo esc_attr( Settings::OPTION ); ?>[blocked_message]"
 								value="<?php echo esc_attr( $settings['blocked_message'] ); ?>"
 								placeholder="<?php echo esc_attr( $this->plugin->settings()->blocked_message() ); ?>">
@@ -261,9 +265,9 @@ class SettingsPage {
 						</td>
 					</tr>
 					<tr>
-						<th scope="row"><label for="email-guard-log-size"><?php esc_html_e( 'Entries to keep', 'hostsherlock-email-guard' ); ?></label></th>
+						<th scope="row"><label for="hostsherlock-email-guard-log-size"><?php esc_html_e( 'Entries to keep', 'hostsherlock-email-guard' ); ?></label></th>
 						<td>
-							<input type="number" id="email-guard-log-size" min="1" max="200" class="small-text"
+							<input type="number" id="hostsherlock-email-guard-log-size" min="1" max="200" class="small-text"
 								name="<?php echo esc_attr( Settings::OPTION ); ?>[log_size]"
 								value="<?php echo esc_attr( (string) (int) $settings['log_size'] ); ?>">
 						</td>
