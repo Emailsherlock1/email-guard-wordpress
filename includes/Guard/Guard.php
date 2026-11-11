@@ -3,10 +3,10 @@
  * The Email-Guard decision engine, ported from email-guard-core-php for
  * WordPress (PHP 7.4, no composer at runtime).
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Guard;
+namespace HostSherlock\EmailGuardWp\Guard;
 
 /**
  * Implements email-guard-spec 1.3.0. Local checks run first and cost
@@ -55,7 +55,7 @@ class Guard {
 			$config['api_key'] = null;
 		}
 		$this->config    = array_merge( self::DEFAULTS, $config );
-		$this->transport = null !== $transport ? $transport : new \EmailSherlock\EmailGuardWp\WpTransport();
+		$this->transport = null !== $transport ? $transport : new \HostSherlock\EmailGuardWp\WpTransport();
 		$this->snapshot  = null !== $snapshot ? $snapshot : new DisposableSnapshot();
 	}
 

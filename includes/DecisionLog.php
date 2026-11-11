@@ -2,12 +2,12 @@
 /**
  * Local decision log: the last N guard decisions, domain-only.
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp;
+namespace HostSherlock\EmailGuardWp;
 
-use EmailSherlock\EmailGuardWp\Guard\Result;
+use HostSherlock\EmailGuardWp\Guard\Result;
 
 /**
  * A ring buffer in one non-autoloaded option. Stores the domain, never the
@@ -15,7 +15,7 @@ use EmailSherlock\EmailGuardWp\Guard\Result;
  */
 class DecisionLog {
 
-	const OPTION = 'emailsherlock_email_guard_log';
+	const OPTION = 'hostsherlock_email_guard_log';
 
 	/** @var Settings */
 	private $settings;

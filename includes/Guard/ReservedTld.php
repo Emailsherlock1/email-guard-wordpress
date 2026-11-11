@@ -3,10 +3,10 @@
  * Reserved names that can never receive public mail
  * (email-guard-spec, section 4.2).
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Guard;
+namespace HostSherlock\EmailGuardWp\Guard;
 
 /**
  * The lists are part of the spec; changing them here without a spec release

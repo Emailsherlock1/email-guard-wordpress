@@ -3,9 +3,9 @@
  * Settings: defaults, policy mapping onto block_on / review_on, sanitize.
  */
 
-namespace EmailSherlock\EmailGuardWp\Tests;
+namespace HostSherlock\EmailGuardWp\Tests;
 
-use EmailSherlock\EmailGuardWp\Settings;
+use HostSherlock\EmailGuardWp\Settings;
 use PHPUnit\Framework\TestCase;
 
 final class SettingsTest extends TestCase {

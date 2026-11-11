@@ -3,11 +3,11 @@
  * Transport mock for the conformance harness and unit tests.
  */
 
-namespace EmailSherlock\EmailGuardWp\Tests\Support;
+namespace HostSherlock\EmailGuardWp\Tests\Support;
 
-use EmailSherlock\EmailGuardWp\Guard\TransportException;
-use EmailSherlock\EmailGuardWp\Guard\TransportInterface;
-use EmailSherlock\EmailGuardWp\Guard\TransportResponse;
+use HostSherlock\EmailGuardWp\Guard\TransportException;
+use HostSherlock\EmailGuardWp\Guard\TransportInterface;
+use HostSherlock\EmailGuardWp\Guard\TransportResponse;
 
 /**
  * Either unavailable (throws, optionally with an attributed failure kind)

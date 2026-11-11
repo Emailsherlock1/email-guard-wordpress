@@ -2,10 +2,10 @@
 /**
  * The pragmatic syntax profile from email-guard-spec, section 4.1.
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Guard;
+namespace HostSherlock\EmailGuardWp\Guard;
 
 /**
  * Structural rules (exactly one @, both parts non-empty) always apply.

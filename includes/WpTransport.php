@@ -2,14 +2,14 @@
 /**
  * TransportInterface backed by the WordPress HTTP API.
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp;
+namespace HostSherlock\EmailGuardWp;
 
-use EmailSherlock\EmailGuardWp\Guard\TransportException;
-use EmailSherlock\EmailGuardWp\Guard\TransportInterface;
-use EmailSherlock\EmailGuardWp\Guard\TransportResponse;
+use HostSherlock\EmailGuardWp\Guard\TransportException;
+use HostSherlock\EmailGuardWp\Guard\TransportInterface;
+use HostSherlock\EmailGuardWp\Guard\TransportResponse;
 
 /**
  * wp_remote_post with a hard time budget. The non-blocking mode is for
@@ -44,7 +44,7 @@ class WpTransport implements TransportInterface {
 				'body'       => $body,
 				'timeout'    => max( 1, $timeout_ms ) / 1000,
 				'blocking'   => $this->blocking,
-				'user-agent' => 'emailsherlock-email-guard/' . Guard\Guard::VERSION . '; ' . home_url( '/' ),
+				'user-agent' => 'hostsherlock-email-guard/' . Guard\Guard::VERSION . '; ' . home_url( '/' ),
 			)
 		);
 

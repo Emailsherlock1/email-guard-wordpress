@@ -2,13 +2,13 @@
 /**
  * GravityFormsAdapter wiring tests.
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Tests\Adapters;
+namespace HostSherlock\EmailGuardWp\Tests\Adapters;
 
-use EmailSherlock\EmailGuardWp\Adapters\GravityFormsAdapter;
-use EmailSherlock\EmailGuardWp\Tests\Support\FakeGuardService;
+use HostSherlock\EmailGuardWp\Adapters\GravityFormsAdapter;
+use HostSherlock\EmailGuardWp\Tests\Support\FakeGuardService;
 use PHPUnit\Framework\TestCase;
 
 /**

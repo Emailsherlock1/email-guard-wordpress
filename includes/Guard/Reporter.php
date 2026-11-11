@@ -2,10 +2,10 @@
 /**
  * Decision telemetry emitter (email-guard-spec, section 11).
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Guard;
+namespace HostSherlock\EmailGuardWp\Guard;
 
 /**
  * Collects one event per guard decision and ships them, batched, to
@@ -13,7 +13,7 @@ namespace EmailSherlock\EmailGuardWp\Guard;
  *
  * The contract is the spec's: key-gated (no key, no telemetry), fail-silent
  * (a reporting failure never surfaces), domain only (never the address).
- * The optional property key (site key from the EmailSherlock dashboard)
+ * The optional property key (site key from the HostSherlock dashboard)
  * rides along as `property_key` so events attribute to the right property.
  */
 class Reporter {
@@ -50,7 +50,7 @@ class Reporter {
 		$this->property_key = ( is_string( $property_key ) && '' !== $property_key ) ? $property_key : null;
 		$this->base_url     = $base_url;
 		$this->timeout_ms   = $timeout_ms;
-		$this->transport    = null !== $transport ? $transport : new \EmailSherlock\EmailGuardWp\WpTransport( false );
+		$this->transport    = null !== $transport ? $transport : new \HostSherlock\EmailGuardWp\WpTransport( false );
 	}
 
 	/** @return bool */

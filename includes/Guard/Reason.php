@@ -2,10 +2,10 @@
 /**
  * Reason codes produced by the local checks (email-guard-spec, section 6.2).
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Guard;
+namespace HostSherlock\EmailGuardWp\Guard;
 
 /**
  * Reasons from the Verify API pass through verbatim and are not enumerated

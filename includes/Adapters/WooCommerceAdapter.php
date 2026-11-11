@@ -2,12 +2,12 @@
 /**
  * Guards WooCommerce checkout and account registration.
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Adapters;
+namespace HostSherlock\EmailGuardWp\Adapters;
 
-use EmailSherlock\EmailGuardWp\GuardService;
+use HostSherlock\EmailGuardWp\GuardService;
 
 /**
  * Two surfaces, one adapter: the billing email at checkout
@@ -31,7 +31,7 @@ class WooCommerceAdapter implements AdapterInterface {
 	 * @return string
 	 */
 	public function label() {
-		return __( 'WooCommerce checkout and registration', 'emailsherlock-email-guard' );
+		return __( 'WooCommerce checkout and registration', 'hostsherlock-email-guard' );
 	}
 
 	/**
@@ -58,7 +58,7 @@ class WooCommerceAdapter implements AdapterInterface {
 		$email    = isset( $data['billing_email'] ) ? (string) $data['billing_email'] : '';
 		$decision = $this->service->check( $email, $this->id() );
 		if ( $decision->is_denied() ) {
-			$errors->add( 'emailsherlock_email_guard_denied', $decision->message(), array( 'id' => 'billing_email' ) );
+			$errors->add( 'hostsherlock_email_guard_denied', $decision->message(), array( 'id' => 'billing_email' ) );
 		}
 	}
 
@@ -75,7 +75,7 @@ class WooCommerceAdapter implements AdapterInterface {
 
 		$decision = $this->service->check( (string) $email, $this->id() );
 		if ( $decision->is_denied() ) {
-			$errors->add( 'emailsherlock_email_guard_denied', $decision->message() );
+			$errors->add( 'hostsherlock_email_guard_denied', $decision->message() );
 		}
 
 		return $errors;

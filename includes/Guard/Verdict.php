@@ -2,10 +2,10 @@
 /**
  * Verdict constants (email-guard-spec, section 6.1).
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Guard;
+namespace HostSherlock\EmailGuardWp\Guard;
 
 /**
  * Classification of an address. Mirrors the `result` enum of the Verify API.

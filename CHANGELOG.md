@@ -11,7 +11,7 @@ First release.
   (fail-open by default), relay signal support.
 - Adapters: comments, registration, WooCommerce, Contact Form 7, WPForms,
   Gravity Forms; adapter pattern open via the
-  `emailsherlock_email_guard_adapters` filter.
+  `hostsherlock_email_guard_adapters` filter.
 - Per-verdict block / flag / allow policy, per-form toggles, custom blocked
   message.
 - Domain-only decision log (option-backed ring buffer) and domain-only

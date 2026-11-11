@@ -3,10 +3,10 @@
  * WooCommerce adapter: checkout billing email and account registration.
  */
 
-namespace EmailSherlock\EmailGuardWp\Tests\Adapters;
+namespace HostSherlock\EmailGuardWp\Tests\Adapters;
 
-use EmailSherlock\EmailGuardWp\Adapters\WooCommerceAdapter;
-use EmailSherlock\EmailGuardWp\Tests\Support\FakeGuardService;
+use HostSherlock\EmailGuardWp\Adapters\WooCommerceAdapter;
+use HostSherlock\EmailGuardWp\Tests\Support\FakeGuardService;
 use PHPUnit\Framework\TestCase;
 
 final class WooCommerceAdapterTest extends TestCase {
@@ -29,7 +29,7 @@ final class WooCommerceAdapterTest extends TestCase {
 		$errors = new \WP_Error();
 		do_action( 'woocommerce_after_checkout_validation', array( 'billing_email' => 'x@mailinator.com' ), $errors );
 
-		$this->assertSame( 'emailsherlock_email_guard_denied', $errors->get_error_code() );
+		$this->assertSame( 'hostsherlock_email_guard_denied', $errors->get_error_code() );
 		$this->assertSame( array( 'id' => 'billing_email' ), $errors->get_error_data() );
 		$this->assertSame( 'x@mailinator.com', $service->checks[0]['email'] );
 		$this->assertSame( 'woocommerce', $service->checks[0]['form_id'] );
@@ -52,7 +52,7 @@ final class WooCommerceAdapterTest extends TestCase {
 
 		$errors = apply_filters( 'woocommerce_registration_errors', new \WP_Error(), 'jane', 'x@mailinator.com' );
 
-		$this->assertSame( 'emailsherlock_email_guard_denied', $errors->get_error_code() );
+		$this->assertSame( 'hostsherlock_email_guard_denied', $errors->get_error_code() );
 	}
 
 	public function testRegistrationExistingErrorShortCircuits(): void {

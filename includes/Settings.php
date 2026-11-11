@@ -2,12 +2,12 @@
 /**
  * Plugin settings: one option, sane defaults, policy mapping.
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp;
+namespace HostSherlock\EmailGuardWp;
 
-use EmailSherlock\EmailGuardWp\Guard\Verdict;
+use HostSherlock\EmailGuardWp\Guard\Verdict;
 
 /**
  * Policy belongs to you, the site owner, not to the server: every threshold
@@ -16,7 +16,7 @@ use EmailSherlock\EmailGuardWp\Guard\Verdict;
  */
 class Settings {
 
-	const OPTION = 'emailsherlock_email_guard_settings';
+	const OPTION = 'hostsherlock_email_guard_settings';
 
 	/** Per-verdict actions the UI offers. */
 	const ACTION_BLOCK = 'block';
@@ -153,8 +153,8 @@ class Settings {
 			'block_on'   => $this->block_on(),
 			'review_on'  => $this->review_on(),
 			'fail_open'  => (bool) $this->get( 'fail_open' ),
-			'timeout_ms' => (int) apply_filters( 'emailsherlock_email_guard_timeout_ms', 800 ),
-			'base_url'   => (string) apply_filters( 'emailsherlock_email_guard_base_url', 'https://api.emailsherlock.com' ),
+			'timeout_ms' => (int) apply_filters( 'hostsherlock_email_guard_timeout_ms', 800 ),
+			'base_url'   => (string) apply_filters( 'hostsherlock_email_guard_base_url', 'https://api.emailsherlock.com' ),
 		);
 
 		return $config;
@@ -171,7 +171,7 @@ class Settings {
 			return $custom;
 		}
 
-		return __( 'This email address can\'t receive mail. Check it for typos.', 'emailsherlock-email-guard' );
+		return __( 'This email address can\'t receive mail. Check it for typos.', 'hostsherlock-email-guard' );
 	}
 
 	/**

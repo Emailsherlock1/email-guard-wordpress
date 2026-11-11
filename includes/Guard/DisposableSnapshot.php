@@ -3,10 +3,10 @@
  * The bundled disposable-domain snapshot (email-guard-spec, sections 4.3
  * and 9.1).
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Guard;
+namespace HostSherlock\EmailGuardWp\Guard;
 
 /**
  * Matching is exact by design: the Verify API matches its live list the

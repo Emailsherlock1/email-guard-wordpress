@@ -3,11 +3,11 @@
  * Plugin bootstrap: adapter registry, availability gating, per-form toggles.
  */
 
-namespace EmailSherlock\EmailGuardWp\Tests;
+namespace HostSherlock\EmailGuardWp\Tests;
 
-use EmailSherlock\EmailGuardWp\Adapters\AdapterInterface;
-use EmailSherlock\EmailGuardWp\Plugin;
-use EmailSherlock\EmailGuardWp\Settings;
+use HostSherlock\EmailGuardWp\Adapters\AdapterInterface;
+use HostSherlock\EmailGuardWp\Plugin;
+use HostSherlock\EmailGuardWp\Settings;
 use PHPUnit\Framework\TestCase;
 
 final class PluginTest extends TestCase {
@@ -89,11 +89,11 @@ final class PluginTest extends TestCase {
 			public function is_available() {
 				return false;
 			}
-			public function register( \EmailSherlock\EmailGuardWp\GuardService $service ) {
+			public function register( \HostSherlock\EmailGuardWp\GuardService $service ) {
 			}
 		};
 		add_filter(
-			'emailsherlock_email_guard_adapters',
+			'hostsherlock_email_guard_adapters',
 			static function ( $adapters ) use ( $extra ) {
 				$adapters[] = $extra;
 				$adapters[] = new \stdClass();

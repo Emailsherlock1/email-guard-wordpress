@@ -2,10 +2,10 @@
 /**
  * Action constants (email-guard-spec, section 6.4).
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Guard;
+namespace HostSherlock\EmailGuardWp\Guard;
 
 /**
  * What the form should do with the address.

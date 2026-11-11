@@ -2,15 +2,15 @@
 /**
  * Admin-ajax connection test for the settings screen.
  *
- * @package EmailSherlock\EmailGuardWp
+ * @package HostSherlock\EmailGuardWp
  */
 
-namespace EmailSherlock\EmailGuardWp\Admin;
+namespace HostSherlock\EmailGuardWp\Admin;
 
-use EmailSherlock\EmailGuardWp\Guard\Guard;
-use EmailSherlock\EmailGuardWp\Guard\TransportException;
-use EmailSherlock\EmailGuardWp\Settings;
-use EmailSherlock\EmailGuardWp\WpTransport;
+use HostSherlock\EmailGuardWp\Guard\Guard;
+use HostSherlock\EmailGuardWp\Guard\TransportException;
+use HostSherlock\EmailGuardWp\Settings;
+use HostSherlock\EmailGuardWp\WpTransport;
 
 /**
  * Sends one telemetry event to POST /v1/guard/events with the key the admin
@@ -20,7 +20,7 @@ use EmailSherlock\EmailGuardWp\WpTransport;
  */
 class ConnectionTest {
 
-	const ACTION = 'emailsherlock_email_guard_test';
+	const ACTION = 'hostsherlock_email_guard_test';
 
 	/** @var Settings */
 	private $settings;
@@ -45,7 +45,7 @@ class ConnectionTest {
 	public function handle() {
 		check_ajax_referer( self::ACTION, 'nonce' );
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( array( 'message' => __( 'You are not allowed to do that.', 'emailsherlock-email-guard' ) ), 403 );
+			wp_send_json_error( array( 'message' => __( 'You are not allowed to do that.', 'hostsherlock-email-guard' ) ), 403 );
 		}
 
 		$api_key = isset( $_POST['api_key'] ) ? sanitize_text_field( wp_unslash( $_POST['api_key'] ) ) : '';
@@ -59,7 +59,7 @@ class ConnectionTest {
 
 		if ( '' === $api_key ) {
 			wp_send_json_error(
-				array( 'message' => __( 'Enter an API key first. Local checks run without one, but the connection test needs a key.', 'emailsherlock-email-guard' ) )
+				array( 'message' => __( 'Enter an API key first. Local checks run without one, but the connection test needs a key.', 'hostsherlock-email-guard' ) )
 			);
 		}
 
@@ -78,7 +78,7 @@ class ConnectionTest {
 			$event['property_key'] = $site_key;
 		}
 
-		$base_url  = (string) apply_filters( 'emailsherlock_email_guard_base_url', 'https://api.emailsherlock.com' );
+		$base_url  = (string) apply_filters( 'hostsherlock_email_guard_base_url', 'https://api.emailsherlock.com' );
 		$transport = new WpTransport();
 
 		try {
@@ -97,7 +97,7 @@ class ConnectionTest {
 				array(
 					'message' => sprintf(
 						/* translators: %s: transport error detail. */
-						__( 'Could not reach the API: %s', 'emailsherlock-email-guard' ),
+						__( 'Could not reach the API: %s', 'hostsherlock-email-guard' ),
 						$exception->getMessage()
 					),
 				)
@@ -107,17 +107,17 @@ class ConnectionTest {
 		}
 
 		if ( 202 === $response->status_code ) {
-			wp_send_json_success( array( 'message' => __( 'Connected. The key works and a test event reached your dashboard.', 'emailsherlock-email-guard' ) ) );
+			wp_send_json_success( array( 'message' => __( 'Connected. The key works and a test event reached your dashboard.', 'hostsherlock-email-guard' ) ) );
 		} elseif ( 401 === $response->status_code ) {
-			wp_send_json_error( array( 'message' => __( 'The API rejected this key. Check it in your EmailSherlock dashboard.', 'emailsherlock-email-guard' ) ) );
+			wp_send_json_error( array( 'message' => __( 'The API rejected this key. Check it in your HostSherlock dashboard.', 'hostsherlock-email-guard' ) ) );
 		} elseif ( 403 === $response->status_code ) {
-			wp_send_json_error( array( 'message' => __( 'The key is valid but is not granted the guard:events scope.', 'emailsherlock-email-guard' ) ) );
+			wp_send_json_error( array( 'message' => __( 'The key is valid but is not granted the guard:events scope.', 'hostsherlock-email-guard' ) ) );
 		} else {
 			wp_send_json_error(
 				array(
 					'message' => sprintf(
 						/* translators: %d: HTTP status code. */
-						__( 'Unexpected answer from the API: HTTP %d.', 'emailsherlock-email-guard' ),
+						__( 'Unexpected answer from the API: HTTP %d.', 'hostsherlock-email-guard' ),
 						$response->status_code
 					),
 				)

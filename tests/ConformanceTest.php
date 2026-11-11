@@ -5,12 +5,12 @@
  * assertion so local short-circuits provably never burn an API call.
  */
 
-namespace EmailSherlock\EmailGuardWp\Tests;
+namespace HostSherlock\EmailGuardWp\Tests;
 
-use EmailSherlock\EmailGuardWp\Guard\DisposableSnapshot;
-use EmailSherlock\EmailGuardWp\Guard\Guard;
-use EmailSherlock\EmailGuardWp\Guard\TransportException;
-use EmailSherlock\EmailGuardWp\Tests\Support\MockTransport;
+use HostSherlock\EmailGuardWp\Guard\DisposableSnapshot;
+use HostSherlock\EmailGuardWp\Guard\Guard;
+use HostSherlock\EmailGuardWp\Guard\TransportException;
+use HostSherlock\EmailGuardWp\Tests\Support\MockTransport;
 use PHPUnit\Framework\TestCase;
 
 final class ConformanceTest extends TestCase {
