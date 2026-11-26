@@ -13,15 +13,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Implements email-guard-spec 1.3.0. Local checks run first and cost
+ * Implements email-guard-spec 1.4.0. Local checks run first and cost
  * nothing. Only addresses that pass them escalate to the Verify API, and
  * only when an api_key is configured. The guard fails open by default: an
  * API outage never blocks a signup.
  */
 class Guard {
 
-	const VERSION      = '0.1.0';
-	const SPEC_VERSION = '1.3.0';
+	const VERSION      = '0.1.1';
+	const SPEC_VERSION = '1.4.0';
 
 	const DEFAULTS = array(
 		'api_key'    => null,

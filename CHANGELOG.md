@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1
+
+- Fix: the syntax profile rejects a line feed at the end of the local part
+  or of a domain label (`jane\n@example.com`, `jane@example\n.com`). The
+  patterns anchored with a bare `$`, which PCRE also matches before a final
+  `\n`; they now carry the `D` modifier. Conformant to email-guard-spec 1.4.0
+  (vectors `syntax-025` to `syntax-028`).
+
 ## 0.1.0
 
 First release.
