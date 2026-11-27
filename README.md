@@ -12,7 +12,7 @@ with zero latency. A [HostSherlock API key](https://www.hostsherlock.com/api/doc
 adds live MX, SMTP probe, a fresh disposable list, relay detection, and the
 guard dashboard.
 
-Implements email-guard-spec **1.3.0** and passes the full conformance vector
+Implements email-guard-spec **1.4.0** and passes the full conformance vector
 set (vendored under `tests/vectors/`).
 
 ## Protected forms
@@ -59,7 +59,7 @@ attributes decisions to this site. No key, no telemetry.
 
 ```
 hostsherlock-email-guard.php          plugin header + autoloader + boot
-includes/Guard/          the ported decision engine (spec 1.3.0)
+includes/Guard/          the ported decision engine (spec 1.4.0)
 includes/Adapters/       one class per form surface
 includes/Admin/          settings screen + ajax connection test
 data/                    bundled disposable snapshot (json.gz)

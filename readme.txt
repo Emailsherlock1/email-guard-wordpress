@@ -4,7 +4,7 @@ Tags: email validation, disposable email, spam, comments, registration
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.1.0
+Stable tag: 0.1.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -91,6 +91,9 @@ Yes. Implement the `AdapterInterface` and add your adapter through the `hostsher
 Check the decision log under Settings > Email Guard. Each decision lists its reasons. If a domain is wrongly on the disposable list, report it to HostSherlock support.
 
 == Changelog ==
+
+= 0.1.1 =
+* Fix: an address with a line break before the @ or before a dot in the domain (`jane\n@example.com`) now fails the syntax check. Before, it passed, and the line break could reach your logs or mail headers.
 
 = 0.1.0 =
 * First release. Local checks (syntax profile, reserved TLDs, disposable snapshot), Verify API escalation with degrade-to-local, per-verdict block/flag/allow policy, adapters for comments, registration, WooCommerce, Contact Form 7, WPForms, Gravity Forms, Elementor Pro forms, Fluent Forms, Ninja Forms, Formidable Forms, domain-only decision log and telemetry.

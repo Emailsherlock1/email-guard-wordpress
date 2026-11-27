@@ -19,8 +19,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 final class SyntaxChecker {
 
-	const LOCAL_PATTERN = '/^[A-Za-z0-9!#$%&\'*+\/=?^_`{|}~.-]+$/';
-	const LABEL_PATTERN = '/^[A-Za-z0-9-]+$/';
+	// `D`: without it PCRE's `$` also matches before a final "\n", so a part
+	// checked on its own ("jane\n" before the @) would pass (spec 1.4.0, syntax-025).
+	const LOCAL_PATTERN = '/^[A-Za-z0-9!#$%&\'*+\/=?^_`{|}~.-]+$/D';
+	const LABEL_PATTERN = '/^[A-Za-z0-9-]+$/D';
 
 	/**
 	 * Whether the trimmed address passes the spec's syntax profile.
@@ -98,7 +100,7 @@ final class SyntaxChecker {
 			}
 		}
 		$tld = $labels[ count( $labels ) - 1 ];
-		if ( strlen( $tld ) < 2 || 1 === preg_match( '/^[0-9]+$/', $tld ) ) {
+		if ( strlen( $tld ) < 2 || 1 === preg_match( '/^[0-9]+$/D', $tld ) ) {
 			return false;
 		}
 
